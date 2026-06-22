@@ -520,6 +520,257 @@
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
     .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ===== SKLEP AGD ===== */
+    #sklep {
+      background: linear-gradient(135deg, rgba(27,46,90,0.3) 0%, rgba(13,21,38,0.95) 100%);
+    }
+    .shop-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 60px;
+    }
+    .product-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+      cursor: pointer;
+    }
+    .product-card:hover { transform: translateY(-6px); border-color: rgba(201,146,42,0.4); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+    .product-emoji-box {
+      background: rgba(255,255,255,0.04);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      padding: 36px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      position: relative;
+    }
+    .product-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--meme-red);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 50px;
+      letter-spacing: 0.5px;
+    }
+    .product-body { padding: 22px; }
+    .product-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .product-desc {
+      font-size: 0.87rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .product-price {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 4px;
+    }
+    .product-old-price {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.3);
+      text-decoration: line-through;
+      margin-bottom: 16px;
+    }
+    .btn-buy {
+      display: block;
+      width: 100%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--dark);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 12px 20px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-align: center;
+    }
+    .btn-buy:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,146,42,0.4); }
+
+    .shop-returns {
+      margin-top: 60px;
+      background: rgba(58,111,216,0.08);
+      border: 1px solid rgba(58,111,216,0.25);
+      border-radius: var(--radius);
+      padding: 28px 36px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .shop-returns .ret-emoji { font-size: 2.2rem; flex-shrink: 0; }
+    .shop-returns p { font-size: 0.92rem; color: rgba(255,255,255,0.65); line-height: 1.65; }
+    .shop-returns a { color: var(--gold-light); font-weight: 700; }
+
+    /* ===== ORDER MODAL ===== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-box {
+      background: #141e35;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 24px;
+      padding: 40px;
+      max-width: 500px;
+      width: 100%;
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px; right: 20px;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.5);
+      font-size: 1.5rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .modal-close:hover { color: white; }
+    .modal-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .modal-product-name {
+      color: var(--gold-light);
+      font-size: 0.9rem;
+      margin-bottom: 28px;
+      font-weight: 600;
+    }
+    .form-group { margin-bottom: 18px; }
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 8px;
+      letter-spacing: 0.4px;
+    }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: white;
+      font-size: 0.95rem;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus, .form-group select:focus { border-color: rgba(201,146,42,0.5); }
+    .form-group select option { background: #141e35; }
+    .payment-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .pay-tab {
+      flex: 1;
+      padding: 10px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .pay-tab.active {
+      background: rgba(201,146,42,0.15);
+      border-color: var(--gold);
+      color: var(--gold-light);
+    }
+    .pay-fields { display: none; }
+    .pay-fields.active { display: block; }
+    .btn-submit-order {
+      display: block;
+      width: 100%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--dark);
+      font-weight: 800;
+      font-size: 1.05rem;
+      padding: 16px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      margin-top: 24px;
+      transition: transform 0.2s;
+    }
+    .btn-submit-order:hover { transform: translateY(-2px); }
+
+    /* ===== SUCCESS SCREEN ===== */
+    .order-success {
+      display: none;
+      text-align: center;
+      padding: 20px 0;
+    }
+    .order-success.active { display: block; }
+    .order-form-wrap.hidden { display: none; }
+    .success-emoji { font-size: 4rem; margin-bottom: 16px; }
+    .success-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .success-msg {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .inpost-cry {
+      background: rgba(255,69,69,0.1);
+      border: 1px solid rgba(255,69,69,0.3);
+      border-radius: 14px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+    .inpost-cry p {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.65;
+    }
+    .inpost-cry .inpost-big {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--meme-red);
+      margin-bottom: 8px;
+    }
   </style>
 </head>
 <body>
@@ -532,8 +783,9 @@
       <li><a href="#excuse">Excuse me sir</a></li>
       <li><a href="#plakal">Płakał 😭</a></li>
       <li><a href="#brainrot">Brainrot</a></li>
+      <li><a href="#sklep">Sklep 🛒</a></li>
     </ul>
-    <a href="#cta" class="nav-badge">Dołącz no cap 🔥</a>
+    <a href="#sklep" class="nav-badge">Kup teraz 🛒</a>
   </nav>
 
   <!-- HERO -->
@@ -828,6 +1080,198 @@
     </div>
   </section>
 
+  <!-- SKLEP AGD -->
+  <section id="sklep">
+    <div class="reveal">
+      <p class="section-eyebrow">🛒 sklep oficjalny JPB</p>
+      <h2 class="section-title">AGD które<br>dosłownie płakał 😭</h2>
+      <p class="section-sub">Sprzęt AGD klasy sigma. Każde urządzenie zatwierdzone przez nasz brainrot team. No cap, działa.</p>
+    </div>
+
+    <div class="shop-grid">
+
+      <div class="product-card reveal" onclick="openModal('Pralka PŁAKAŁ Pro 9000', '67 zł miesięcznie (przez 3 lata)')">
+        <div class="product-emoji-box">
+          🫧
+          <span class="product-badge">HOT 🔥</span>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Pralka PŁAKAŁ Pro 9000 😭</div>
+          <div class="product-desc">Pralka tak dobra, że twoje ubrania same chcą być brudne żeby móc ją znowu uruchomić. Program "Sigma Wash" pierze w 37 sekundach. Konkurent płakał. 67 razy. Podobno teraz daje ubrania do ręcznego prania bo się boi.</div>
+          <div class="product-price">2 137 zł</div>
+          <div class="product-old-price">było: 69 420 zł (cena przed tym że się ogarnęliśmy)</div>
+          <button class="btn-buy">Kup teraz no cap 🛒</button>
+        </div>
+      </div>
+
+      <div class="product-card reveal" onclick="openModal('Piekarnik 67°C Edition', '420 zł albo dwie kawy Starbucks dziennie przez rok')">
+        <div class="product-emoji-box">
+          🔥
+          <span class="product-badge">67 EDYCJA</span>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Piekarnik 67°C Edition 💀</div>
+          <div class="product-desc">Nagrzewa się do 67°C w 67 sekundach — bo przypadki nie istnieją. Wyposażony w tryb "Excuse Me Sir Bake" który piecze chleb tak równomiernie, że Gordon Ramsay podobno płakał i zadzwonił do mamy. Prawda? 67% tak.</div>
+          <div class="product-price">1 337 zł</div>
+          <div class="product-old-price">było: 9 999 zł (zanim zrozumieliśmy że to za drogo)</div>
+          <button class="btn-buy">Zamów piekarnik 🔥</button>
+        </div>
+      </div>
+
+      <div class="product-card reveal" onclick="openModal('Lodówka NoCap Frost™', '37 zł tygodniowo (Revolut polecamy)')">
+        <div class="product-emoji-box">
+          🧊
+        </div>
+        <div class="product-body">
+          <div class="product-name">Lodówka NoCap Frost™ 🧊</div>
+          <div class="product-desc">Chłodzi tak mocno że twój ex się do niej nie równa. Funkcja "Chill Mode" aktywuje się sama kiedy wyczuje że jesteś zestresowany. Posiada 67 półek (policzyliśmy). Mówią że mrozi też ambicje konkurencji — niepotwierdzony fakt ale wierzymy.</div>
+          <div class="product-price">2 867 zł</div>
+          <div class="product-old-price">było: nie powiem bo się wstydzimy</div>
+          <button class="btn-buy">Chcę tę lodówkę 🧊</button>
+        </div>
+      </div>
+
+      <div class="product-card reveal" onclick="openModal('Zmywarka Sigma W rizz™', 'Jednorazowo albo nie, Twój wybór king')">
+        <div class="product-emoji-box">
+          🍽️
+          <span class="product-badge">SIGMA 💅</span>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Zmywarka Sigma W Rizz™ 💅</div>
+          <div class="product-desc">Myje naczynia z takim charisma że talerze wychodzą z niej czystsze niż Twoje intencje. Program "Bussin Clean" usuwa nawet wspomnienia złych kolacji. Uwaga: po użyciu naczynia mogą dostać ego. Nie nasza wina.</div>
+          <div class="product-price">1 867 zł</div>
+          <div class="product-old-price">było: tyle co twoja miesięczna pensja (przepraszamy)</div>
+          <button class="btn-buy">Dodaj do koszyka 🍽️</button>
+        </div>
+      </div>
+
+      <div class="product-card reveal" onclick="openModal('Mikrofala BRAINROT 1200W', '12 rat po 67 zł (reszta to Twój problem)')">
+        <div class="product-emoji-box">
+          📡
+        </div>
+        <div class="product-body">
+          <div class="product-name">Mikrofala BRAINROT 1200W 🧠</div>
+          <div class="product-desc">Podgrzewa jedzenie ale też Twój mood. Tryb "Excuse Me Sir Heat" sprawia że każdy posiłek smakuje jakby gotował go ktoś kto naprawdę się stara. 1200W mocy (67W to było za mało, uwierz nam). Konkurs: znajdź mikrofale z lepszymi memami. Nie ma.</div>
+          <div class="product-price">499 zł</div>
+          <div class="product-old-price">było: 499 zł (nie zmieniliśmy, bo po co, jest git)</div>
+          <button class="btn-buy">Kup mikrofale 📡</button>
+        </div>
+      </div>
+
+      <div class="product-card reveal" onclick="openModal('Odkurzacz GigaChad Turbo', 'Tyle ile masz w portfelu (minimum 1337 zł)')">
+        <div class="product-emoji-box">
+          🌀
+          <span class="product-badge">NEW 💥</span>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Odkurzacz GigaChad Turbo 💪</div>
+          <div class="product-desc">Zasysa brud z taką mocą że sąsiedzi myślą że robisz remont. Albo że coś poszło nie tak. Filtr HEPA klasy "Płakał alergen" oczyszcza powietrze do poziomu w którym możesz w końcu normalnie oddychać i myśleć o przyszłości. Jak JPB.</div>
+          <div class="product-price">1 337 zł</div>
+          <div class="product-old-price">było: tyle co konkurencja ale jakość yikes przy naszej</div>
+          <button class="btn-buy">Zamów odkurzacz 🌀</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="shop-returns reveal">
+      <div class="ret-emoji">📧</div>
+      <p>
+        <strong style="color:white;">Zwroty i reklamacje? Spokojnie.</strong><br>
+        Excuse me sir, mamy maila. Pisz na <a href="mailto:jpbspzoo@gmail.com">jpbspzoo@gmail.com</a> — odpisujemy szybciej niż InPost dostarcza paczki (czyli w ciągu 3-5 dni roboczych bo InPost też czasem płacze 😭). Podaj numer zamówienia, produkt i dlaczego płakałeś — ze szczęścia czy z innych powodów. No cap, ogarniemy.
+      </p>
+    </div>
+  </section>
+
+  <!-- ORDER MODAL -->
+  <div class="modal-overlay" id="orderModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+
+      <div class="order-form-wrap" id="orderFormWrap">
+        <div class="modal-title">Zamów teraz 🛒</div>
+        <div class="modal-product-name" id="modalProductName">Pralka PŁAKAŁ Pro 9000</div>
+
+        <div class="form-group">
+          <label>IMIĘ I NAZWISKO</label>
+          <input type="text" placeholder="np. Jan Kowalski (lub Sigma Jan)" />
+        </div>
+        <div class="form-group">
+          <label>ADRES DOSTAWY</label>
+          <input type="text" placeholder="ul. Bussin 67, mieszkanie no cap" />
+        </div>
+        <div class="form-group">
+          <label>KOD POCZTOWY</label>
+          <input type="text" placeholder="00-067 (losowy przykład)" />
+        </div>
+        <div class="form-group">
+          <label>MIASTO</label>
+          <input type="text" placeholder="Miasto gdzie InPost jeszcze nie płakał" />
+        </div>
+        <div class="form-group">
+          <label>NUMER TELEFONU</label>
+          <input type="text" placeholder="+48 ... (InPost do Ciebie zadzwoni)" />
+        </div>
+
+        <div style="font-size:0.82rem;font-weight:700;color:rgba(255,255,255,0.5);letter-spacing:0.5px;margin-bottom:12px;">METODA PŁATNOŚCI</div>
+        <div class="payment-tabs">
+          <div class="pay-tab active" onclick="switchPay('blik')">📱 BLIK</div>
+          <div class="pay-tab" onclick="switchPay('card')">💳 Karta</div>
+        </div>
+
+        <div class="pay-fields active" id="blik-fields">
+          <div class="form-group">
+            <label>KOD BLIK (6 cyfr)</label>
+            <input type="text" maxlength="6" placeholder="np. 420069 (nie twój PIN!)" />
+          </div>
+        </div>
+
+        <div class="pay-fields" id="card-fields">
+          <div class="form-group">
+            <label>NUMER KARTY</label>
+            <input type="text" maxlength="19" placeholder="1234 5678 9012 3456" />
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+            <div class="form-group">
+              <label>DATA WAŻNOŚCI</label>
+              <input type="text" placeholder="MM/RR" />
+            </div>
+            <div class="form-group">
+              <label>CVV</label>
+              <input type="text" maxlength="3" placeholder="123" />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-top:8px;">
+          <label>CENA DO ZAPŁATY</label>
+          <input type="text" id="modalPrice" readonly style="color:var(--gold-light);font-weight:700;" />
+        </div>
+
+        <button class="btn-submit-order" onclick="submitOrder()">
+          Zamawiam i płacę 💸
+        </button>
+      </div>
+
+      <div class="order-success" id="orderSuccess">
+        <div class="success-emoji">⏳</div>
+        <div class="success-title">Przetwarzamy zamówienie...</div>
+        <div class="success-msg">
+          Twoje dane trafiły do systemu. Karta / BLIK autoryzowany. Adres zatwierdzony. Teraz tylko czekamy na kuriera...
+        </div>
+        <div class="inpost-cry">
+          <div class="inpost-big">😭 InPost płacze.</div>
+          <p>
+            Niestety <strong>aktualnie nie można realizować zamówień</strong> bo <strong>InPost płacze</strong> i nie odpisuje na maile. Podobno paczkomat w centrum ma depresję. Monitorujemy sytuację co 67 minut.<br><br>
+            Jak InPost przestanie płakać, wyślemy Ci maila. No cap. Przepraszamy za utrudnienia — to nie nasza wina, to jest wina uczuć InPostu. 💀<br><br>
+            <strong style="color:var(--gold-light);">Pytania? Pisz: <a href="mailto:jpbspzoo@gmail.com" style="color:var(--gold-light);">jpbspzoo@gmail.com</a></strong>
+          </p>
+        </div>
+        <button class="btn-buy" style="margin-top:24px;border:none;cursor:pointer;" onclick="closeModal()">Zamknij i poczekaj na InPost 😭</button>
+      </div>
+    </div>
+  </div>
+
   <!-- CTA -->
   <section id="cta">
     <div class="cta-bg"></div>
@@ -868,6 +1312,43 @@
     // Stagger meme cards
     document.querySelectorAll('.meme-card, .excuse-card, .brainrot-pill').forEach((card, i) => {
       card.style.transitionDelay = (i % 3) * 0.08 + 's';
+    });
+
+    // Shop modal
+    function openModal(productName, price) {
+      document.getElementById('modalProductName').textContent = productName;
+      document.getElementById('modalPrice').value = price;
+      document.getElementById('orderSuccess').classList.remove('active');
+      document.getElementById('orderFormWrap').classList.remove('hidden');
+      document.getElementById('orderModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('orderModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function switchPay(type) {
+      document.querySelectorAll('.pay-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.pay-fields').forEach(f => f.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById(type + '-fields').classList.add('active');
+    }
+
+    function submitOrder() {
+      // fake loading effect
+      const btn = document.querySelector('.btn-submit-order');
+      btn.textContent = 'Przetwarzamy... ⏳';
+      btn.disabled = true;
+      setTimeout(() => {
+        document.getElementById('orderFormWrap').classList.add('hidden');
+        document.getElementById('orderSuccess').classList.add('active');
+      }, 1800);
+    }
+
+    document.getElementById('orderModal').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
     });
   </script>
 </body>
