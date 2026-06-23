@@ -1194,7 +1194,7 @@
 
         <div class="form-group">
           <label>IMIĘ I NAZWISKO</label>
-          <input type="text" placeholder="np. Jan Kowalski (lub Sigma Jan)" />
+          <input type="text" id="nameInput" placeholder="np. Jan Kowalski (lub Sigma Jan)" />
         </div>
         <div class="form-group">
           <label>ADRES DOSTAWY</label>
@@ -1259,7 +1259,7 @@
         <div class="success-msg">
           Twoje dane trafiły do systemu. Karta / BLIK autoryzowany. Adres zatwierdzony. Teraz tylko czekamy na kuriera...
         </div>
-        <div class="inpost-cry">
+        <div class="inpost-cry" id="inpostCry">
           <div class="inpost-big">😭 InPost płacze.</div>
           <p>
             Niestety <strong>aktualnie nie można realizować zamówień</strong> bo <strong>InPost płacze</strong> i nie odpisuje na maile. Podobno paczkomat w centrum ma depresję. Monitorujemy sytuację co 67 minut.<br><br>
@@ -1267,8 +1267,28 @@
             <strong style="color:var(--gold-light);">Pytania? Pisz: <a href="mailto:jpbspzoo@gmail.com" style="color:var(--gold-light);">jpbspzoo@gmail.com</a></strong>
           </p>
         </div>
-        <button class="btn-buy" style="margin-top:24px;border:none;cursor:pointer;" onclick="closeModal()">Zamknij i poczekaj na InPost 😭</button>
+        <div id="winnerScreen" style="display:none; text-align:center;">
+          <div style="font-size:4rem; margin-bottom:16px; animation: winnerBounce 0.6s ease infinite alternate;">🏆</div>
+          <div style="font-family:'Space Grotesk',sans-serif; font-size:2rem; font-weight:800; background:linear-gradient(90deg,var(--gold),var(--gold-light)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:12px;">WYGRAŁEŚ KONKURS!</div>
+          <div style="font-size:1rem; color:rgba(255,255,255,0.7); margin-bottom:24px;">Maciej, wiedziałeś że to wszystko zmierzało do tego momentu? No cap. Sigma move.</div>
+          <div style="background:rgba(201,146,42,0.15); border:2px solid var(--gold); border-radius:18px; padding:28px; margin-bottom:24px;">
+            <div style="font-size:2.5rem; margin-bottom:12px;">🎬🍿</div>
+            <div style="font-family:'Space Grotesk',sans-serif; font-size:1.4rem; font-weight:800; color:var(--gold-light); margin-bottom:8px;">2 BILETY DO KINA</div>
+            <div style="font-size:1.1rem; font-weight:700; color:white; margin-bottom:6px;">FIGHT CLUB</div>
+            <div style="font-size:0.85rem; color:rgba(255,255,255,0.55); margin-bottom:18px;">Pierwsze zasady Klubu Walki: nie mówisz o Klubie Walki.<br>Drugie zasady: tym razem możesz powiedzieć ojcu. 💀</div>
+            <div style="background:rgba(255,255,255,0.07); border-radius:12px; padding:16px;">
+              <div style="font-size:0.75rem; font-weight:700; letter-spacing:1.5px; color:var(--gold); margin-bottom:6px;">NAGRODA</div>
+              <div style="font-size:1rem; color:white;">🎟️ Bilet #1 — Maciej Trzaskalski</div>
+              <div style="font-size:1rem; color:white; margin-top:4px;">🎟️ Bilet #2 — z Ojcem 👴</div>
+            </div>
+          </div>
+          <div style="font-size:0.82rem; color:rgba(255,255,255,0.4);">Szczegóły odbioru biletów zostaną przesłane na maila.<br>GigaChad move Maciej. Zasłużyłeś. 🫡</div>
+        </div>
+        <button class="btn-buy" style="margin-top:24px;border:none;cursor:pointer;" onclick="closeModal()">Zamknij 🎬</button>
       </div>
+      <style>
+        @keyframes winnerBounce { from { transform: scale(1) rotate(-5deg); } to { transform: scale(1.15) rotate(5deg); } }
+      </style>
     </div>
   </div>
 
@@ -1337,13 +1357,32 @@
     }
 
     function submitOrder() {
-      // fake loading effect
+      const nameVal = document.getElementById('nameInput').value.trim().toLowerCase();
+      const isWinner = nameVal === 'maciej trzaskalski';
+
       const btn = document.querySelector('.btn-submit-order');
       btn.textContent = 'Przetwarzamy... ⏳';
       btn.disabled = true;
+
       setTimeout(() => {
         document.getElementById('orderFormWrap').classList.add('hidden');
         document.getElementById('orderSuccess').classList.add('active');
+
+        if (isWinner) {
+          document.getElementById('inpostCry').style.display = 'none';
+          document.getElementById('winnerScreen').style.display = 'block';
+          document.querySelector('.success-emoji').textContent = '🎉';
+          document.querySelector('.success-title').textContent = 'Weryfikujemy Twoje dane...';
+          document.querySelector('.success-msg').textContent = 'Chwila... to nazwisko... czyżby...?';
+          setTimeout(() => {
+            document.querySelector('.success-emoji').textContent = '🏆';
+            document.querySelector('.success-title').textContent = 'SYSTEM WYKRYŁ ZWYCIĘZCĘ!';
+            document.querySelector('.success-msg').textContent = '';
+          }, 1200);
+        } else {
+          document.getElementById('inpostCry').style.display = '';
+          document.getElementById('winnerScreen').style.display = 'none';
+        }
       }, 1800);
     }
 
